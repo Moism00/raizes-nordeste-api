@@ -27,7 +27,7 @@ Antes de executar o projeto, é necessário ter instalado:
 Clone o repositório:
 
 ```bash
-git clone LINK_DO_REPOSITORIO
+git clone (https://github.com/Moism00/raizes-nordeste-api.git)
 cd raizes-nordeste-api
 ```
 
