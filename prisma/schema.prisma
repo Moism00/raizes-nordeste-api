@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id                Int      @id @default(autoincrement())
+  nome              String
+  email             String   @unique
+  senhaHash         String
+  perfil            String   @default("CLIENTE")
+  telefone          String?
+  consentimentoLGPD Boolean  @default(false)
+  createdAt         DateTime @default(now())
+
+  pedidos     Pedido[]
+  auditorias  Auditoria[]
+  fidelidade  Fidelidade?
+}
+
+model Unidade {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  endereco  String
+  cidade    String
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  pedidos   Pedido[]
+  estoques  Estoque[]
+}
+
+model Produto {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  descricao String?
+  preco     Decimal
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  itensPedido PedidoItem[]
+  estoques    Estoque[]
+}
+
+model Estoque {
+  id                   Int      @id @default(autoincrement())
+  unidadeId            Int
+  produtoId            Int
+  quantidadeDisponivel Int
+  updatedAt            DateTime @updatedAt
+
+  unidade Unidade @relation(fields: [unidadeId], references: [id])
+  produto Produto @relation(fields: [produtoId], references: [id])
+
+  @@unique([unidadeId, produtoId])
+}
+
+model Pedido {
+  id             Int      @id @default(autoincrement())
+  usuarioId      Int
+  unidadeId      Int
+  canalPedido    String
+  status         String   @default("AGUARDANDO_PAGAMENTO")
+  formaPagamento String
+  valorTotal     Decimal
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  usuario    Usuario      @relation(fields: [usuarioId], references: [id])
+  unidade    Unidade      @relation(fields: [unidadeId], references: [id])
+  itens      PedidoItem[]
+  pagamento  Pagamento?
+  auditorias Auditoria[]
+}
+
+model PedidoItem {
+  id            Int     @id @default(autoincrement())
+  pedidoId      Int
+  produtoId     Int
+  quantidade    Int
+  precoUnitario Decimal
+  subtotal      Decimal
+
+  pedido  Pedido  @relation(fields: [pedidoId], references: [id])
+  produto Produto @relation(fields: [produtoId], references: [id])
+}
+
+model Pagamento {
+  id               Int      @id @default(autoincrement())
+  pedidoId          Int      @unique
+  metodo            String
+  status            String
+  payloadRequisicao String?
+  payloadResposta   String?
+  createdAt         DateTime @default(now())
+
+  pedido Pedido @relation(fields: [pedidoId], references: [id])
+}
+
+model Auditoria {
+  id        Int      @id @default(autoincrement())
+  usuarioId Int
+  pedidoId  Int?
+  acao      String
+  entidade  String
+  detalhes  String?
+  createdAt DateTime @default(now())
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  pedido  Pedido? @relation(fields: [pedidoId], references: [id])
+}
+
+model Fidelidade {
+  id            Int      @id @default(autoincrement())
+  usuarioId     Int      @unique
+  saldoPontos   Int      @default(0)
+  consentimento Boolean  @default(false)
+  updatedAt     DateTime @updatedAt
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+}

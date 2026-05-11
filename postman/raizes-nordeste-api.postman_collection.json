@@ -1,0 +1,345 @@
+{
+  "info": {
+    "_postman_id": "790ebd95-7f1a-432e-9b79-93d04758fff6",
+    "name": "Tarefa final",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48269339",
+    "_collection_link": "https://go.postman.co/collection/48269339-790ebd95-7f1a-432e-9b79-93d04758fff6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "http://localhost:3000/auth/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"cliente@exemplo.com\",\r\n  \"senha\": \"Senha@123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Produtos/Listar produtos",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjbGllbnRlQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ0xJRU5URSIsImlhdCI6MTc3ODUzMDAwOSwiZXhwIjoxNzc4NTMzNjA5fQ.jiuskZ7jsA5okaMvgTIj7RS6gBe2Hh5dXZSONlG23pg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/produtos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "produtos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Unidades/Listar unidades",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjbGllbnRlQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ0xJRU5URSIsImlhdCI6MTc3ODUzMDAwOSwiZXhwIjoxNzc4NTMzNjA5fQ.jiuskZ7jsA5okaMvgTIj7RS6gBe2Hh5dXZSONlG23pg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/unidades",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "unidades"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Estoque/Consultar estoque por unidade",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjbGllbnRlQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ0xJRU5URSIsImlhdCI6MTc3ODUzMDAwOSwiZXhwIjoxNzc4NTMzNjA5fQ.jiuskZ7jsA5okaMvgTIj7RS6gBe2Hh5dXZSONlG23pg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/estoques?unidadeId=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "estoques"
+          ],
+          "query": [
+            {
+              "key": "unidadeId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pedidos/Criar pedido válido",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjbGllbnRlQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ0xJRU5URSIsImlhdCI6MTc3ODUzMDAwOSwiZXhwIjoxNzc4NTMzNjA5fQ.jiuskZ7jsA5okaMvgTIj7RS6gBe2Hh5dXZSONlG23pg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"unidadeId\": 1,\r\n  \"canalPedido\": \"TOTEM\",\r\n  \"itens\": [\r\n    {\r\n      \"produtoId\": 1,\r\n      \"quantidade\": 2\r\n    },\r\n    {\r\n      \"produtoId\": 2,\r\n      \"quantidade\": 1\r\n    }\r\n  ],\r\n  \"formaPagamento\": \"MOCK\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pagamentos/Pagamento aprovado",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjbGllbnRlQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ0xJRU5URSIsImlhdCI6MTc3ODUzMDAwOSwiZXhwIjoxNzc4NTMzNjA5fQ.jiuskZ7jsA5okaMvgTIj7RS6gBe2Hh5dXZSONlG23pg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"resultado\": \"APROVADO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/pedidos/1/pagamento/mock",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "pedidos",
+            "1",
+            "pagamento",
+            "mock"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pedidos/Atualizar status cozinha",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJjb3ppbmhhQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ09aSU5IQSIsImlhdCI6MTc3ODUzMTA3OSwiZXhwIjoxNzc4NTM0Njc5fQ.UiLF8Vh-B34B-LewvF6PiscMDAHD5LD5v-M7mgghIgo",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"status\": \"EM_PREPARO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/pedidos/1/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "pedidos",
+            "1",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pedidos/Listar pedidos",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJjb3ppbmhhQGV4ZW1wbG8uY29tIiwicGVyZmlsIjoiQ09aSU5IQSIsImlhdCI6MTc3ODUzMTA3OSwiZXhwIjoxNzc4NTM0Njc5fQ.UiLF8Vh-B34B-LewvF6PiscMDAHD5LD5v-M7mgghIgo",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/pedidos?canalPedido=TOTEM",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "pedidos"
+          ],
+          "query": [
+            {
+              "key": "canalPedido",
+              "value": "TOTEM"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/auth/login 2",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin@exemplo.com\",\r\n  \"senha\": \"Senha@123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Auditoria/Sem permissão",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJhZG1pbkBleGVtcGxvLmNvbSIsInBlcmZpbCI6IkFETUlOIiwiaWF0IjoxNzc4NTMxNDA1LCJleHAiOjE3Nzg1MzUwMDV9.R6VFHu9yWtThY7Ojo-Gfbg13JFlqQxiwEBIBASSUw8w",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/auditorias",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auditorias"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
